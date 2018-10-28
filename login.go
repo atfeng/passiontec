@@ -1,4 +1,4 @@
-package main
+package passiontec
 
 import (
 	"encoding/json"
@@ -44,7 +44,7 @@ type LoginResponse struct {
 	TotalCount int
 }
 
-func (cli *Client) doLogin(userName, employeeName, password, validateCode string) error {
+func (cli *Client) DoLogin(userName, employeeName, password, validateCode string) error {
 	data := url.Values{
 		"userName":     {userName},
 		"employeeName": {employeeName},

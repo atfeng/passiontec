@@ -5,9 +5,11 @@ import (
 	"log"
 	"net/http"
 	"time"
+
+	"../.."
 )
 
-var client *Client = New()
+var client *passiontec.Client = passiontec.New()
 
 func main() {
 	http.HandleFunc("/", indexHandler)
@@ -71,7 +73,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html;charset=UTF-8")
 
 	if r.Method == "POST" {
-		client.doLogin(r.FormValue("userName"), r.FormValue("employeeName"), r.FormValue("password"), r.FormValue("validateCode"))
+		client.DoLogin(r.FormValue("userName"), r.FormValue("employeeName"), r.FormValue("password"), r.FormValue("validateCode"))
 	}
 
 	w.Write([]byte(html))
