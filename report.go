@@ -43,6 +43,20 @@ type PayReport struct {
 	MoneyTotal             int //总计
 }
 
+func (report PayReport) MoneyByPayName() map[string]float32 {
+	return map[string]float32{
+		"现金":    float32(report.CashMoney) / 100,
+		"微信":    float32(report.WechatMoney) / 100,
+		"支付宝":   float32(report.AlipayMoney) / 100,
+		"会员消费":  float32(report.VipMainMoney) / 100,
+		"信用卡":   float32(report.OncreditMoney) / 100,
+		"银行卡":   float32(report.BankCardMoney) / 100,
+		"第三方支付": float32(report.ThirdpayMoney) / 100,
+		"优惠券":   float32(report.CouponpayMoney) / 100,
+		"团购":    float32(report.GroupbuypayMoney) / 100,
+	}
+}
+
 func (cli *Client) GetPayReportDetail(start, end time.Time) (*PayReport, error) {
 	data := map[string]interface{}{
 		"startTime":  start.Unix() * 1000,
